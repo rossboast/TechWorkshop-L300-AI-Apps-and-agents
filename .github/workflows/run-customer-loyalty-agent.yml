@@ -44,9 +44,10 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Create .env file from secret
-        working-directory: ./src
-        run: |
-          echo "${{ secrets.ENV }}" > .env
+        run: 'echo "$ENV" > src/.env'
+        shell: bash
+        env:
+          ENV: ${{ secrets.ENV }}
 
       - name: Run Customer Loyalty Agent script
         working-directory: ./src
