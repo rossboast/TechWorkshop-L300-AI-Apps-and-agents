@@ -56,8 +56,9 @@ jobs:
           AZURE_CLIENT_SECRET: ${{ fromJson(secrets.AZURE_CREDENTIALS).clientSecret }}
           AZURE_TENANT_ID: ${{ fromJson(secrets.AZURE_CREDENTIALS).tenantId }}
           AZURE_SUBSCRIPTION_ID: ${{ fromJson(secrets.AZURE_CREDENTIALS).subscriptionId }}
+          PYTHONPATH: ${{ github.workspace }}/src:${{ github.workspace }}/src/app/agents
         run: |
-          python -m app.agents.customerLoyaltyAgent_initializer
+          python app/agents/customerLoyaltyAgent_initializer.py
 
       - name: Clean up .env file
         working-directory: ./src
